@@ -1,4 +1,4 @@
-# Real Estate Admin App - Simple Structure
+# BELLE HOUSE IMMOBILIER Agent App - Structure
 
 ```
 real_estate_admin/
