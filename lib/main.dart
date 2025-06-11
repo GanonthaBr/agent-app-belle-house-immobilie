@@ -22,7 +22,7 @@ void main() async {
 }
 
 class RealEstateAdminApp extends StatelessWidget {
-  const RealEstateAdminApp({Key? key}) : super(key: key);
+  const RealEstateAdminApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class RealEstateAdminApp extends StatelessWidget {
 }
 
 class AuthWrapper extends StatelessWidget {
-  const AuthWrapper({Key? key}) : super(key: key);
+  const AuthWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
   final IconData? icon;
 
   const CustomButton({
-    Key? key,
+    super.key,
     required this.text,
     this.onPressed,
     this.isLoading = false,
@@ -22,7 +22,7 @@ class CustomButton extends StatelessWidget {
     this.width,
     this.height = 50,
     this.icon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,31 +39,32 @@ class CustomButton extends StatelessWidget {
           ),
           elevation: 0,
         ),
-        child: isLoading
-            ? const SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-              )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (icon != null) ...[
-                    Icon(icon, size: 20),
-                    const SizedBox(width: 8),
-                  ],
-                  Text(
-                    text,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+        child:
+            isLoading
+                ? const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                   ),
-                ],
-              ),
+                )
+                : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (icon != null) ...[
+                      Icon(icon, size: 20),
+                      const SizedBox(width: 8),
+                    ],
+                    Text(
+                      text,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
       ),
     );
   }
@@ -84,7 +85,7 @@ class CustomTextField extends StatelessWidget {
   final bool readOnly;
 
   const CustomTextField({
-    Key? key,
+    super.key,
     this.controller,
     this.label,
     this.hintText,
@@ -96,7 +97,7 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.maxLines = 1,
     this.readOnly = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +126,10 @@ class CustomTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(color: AppColors.textSecondary),
-            prefixIcon: prefixIcon != null
-                ? Icon(prefixIcon, color: AppColors.textSecondary)
-                : null,
+            prefixIcon:
+                prefixIcon != null
+                    ? Icon(prefixIcon, color: AppColors.textSecondary)
+                    : null,
             suffixIcon: suffixIcon,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
@@ -163,11 +165,7 @@ class LoadingWidget extends StatelessWidget {
   final String? message;
   final Color? backgroundColor;
 
-  const LoadingWidget({
-    Key? key,
-    this.message,
-    this.backgroundColor,
-  }) : super(key: key);
+  const LoadingWidget({super.key, this.message, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -188,10 +186,7 @@ class LoadingWidget extends StatelessWidget {
                 const SizedBox(height: 16),
                 Text(
                   message!,
-                  style: TextStyle(
-                    color: AppColors.textPrimary,
-                    fontSize: 16,
-                  ),
+                  style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
                 ),
               ],
             ],
@@ -213,7 +208,7 @@ class ConfirmationDialog extends StatelessWidget {
   final Color? confirmColor;
 
   const ConfirmationDialog({
-    Key? key,
+    super.key,
     required this.title,
     required this.content,
     required this.onConfirm,
@@ -221,16 +216,14 @@ class ConfirmationDialog extends StatelessWidget {
     this.confirmText = 'Confirmer',
     this.cancelText = 'Annuler',
     this.confirmColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(title),
       content: Text(content),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       actions: [
         TextButton(
           onPressed: onCancel ?? () => Navigator.of(context).pop(),
@@ -250,10 +243,7 @@ class ConfirmationDialog extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          child: Text(
-            confirmText,
-            style: const TextStyle(color: Colors.white),
-          ),
+          child: Text(confirmText, style: const TextStyle(color: Colors.white)),
         ),
       ],
     );
@@ -271,15 +261,16 @@ class ConfirmationDialog extends StatelessWidget {
   }) {
     return showDialog(
       context: context,
-      builder: (context) => ConfirmationDialog(
-        title: title,
-        content: content,
-        onConfirm: onConfirm,
-        onCancel: onCancel,
-        confirmText: confirmText,
-        cancelText: cancelText,
-        confirmColor: confirmColor,
-      ),
+      builder:
+          (context) => ConfirmationDialog(
+            title: title,
+            content: content,
+            onConfirm: onConfirm,
+            onCancel: onCancel,
+            confirmText: confirmText,
+            cancelText: cancelText,
+            confirmColor: confirmColor,
+          ),
     );
   }
 }

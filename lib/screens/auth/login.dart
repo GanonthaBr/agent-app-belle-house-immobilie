@@ -122,11 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
             color: AppColors.primary,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: const Icon(
-            Icons.real_estate_agent,
-            color: Colors.white,
-            size: 40,
-          ),
+          child: Image.asset('/images/logo.png'),
         ),
         const SizedBox(height: 20),
         Text(

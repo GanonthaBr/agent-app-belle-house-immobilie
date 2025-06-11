@@ -94,13 +94,19 @@ class DashboardHomeTab extends StatelessWidget {
     return SafeArea(
       child: RefreshIndicator(
         onRefresh: () async {
-          final authProvider =
-              Provider.of<AuthProvider>(context, listen: false);
+          final authProvider = Provider.of<AuthProvider>(
+            context,
+            listen: false,
+          );
           if (authProvider.token != null) {
-            final houseProvider =
-                Provider.of<HouseProvider>(context, listen: false);
-            final landProvider =
-                Provider.of<LandProvider>(context, listen: false);
+            final houseProvider = Provider.of<HouseProvider>(
+              context,
+              listen: false,
+            );
+            final landProvider = Provider.of<LandProvider>(
+              context,
+              listen: false,
+            );
 
             await Future.wait([
               houseProvider.refreshHouses(authProvider.token!),
@@ -315,20 +321,24 @@ class DashboardHomeTab extends StatelessWidget {
 
         return Column(
           children: [
-            ...recentHouses.map((house) => _buildPropertyItem(
-                  title: house.name,
-                  subtitle: house.area,
-                  price: '${house.price.toStringAsFixed(0)} FCFA',
-                  type: house.typeOfContract == 'sale' ? 'Vente' : 'Location',
-                  icon: Icons.home,
-                )),
-            ...recentLands.map((land) => _buildPropertyItem(
-                  title: land.name,
-                  subtitle: '${land.size}m² - ${land.area}',
-                  price: '${land.price.toStringAsFixed(0)} FCFA',
-                  type: land.typeOfContract == 'sale' ? 'Vente' : 'Location',
-                  icon: Icons.landscape,
-                )),
+            ...recentHouses.map(
+              (house) => _buildPropertyItem(
+                title: house.name,
+                subtitle: house.area,
+                price: '${house.price.toStringAsFixed(0)} FCFA',
+                type: house.typeOfContract == 'sale' ? 'Vente' : 'Location',
+                icon: Icons.home,
+              ),
+            ),
+            ...recentLands.map(
+              (land) => _buildPropertyItem(
+                title: land.name,
+                subtitle: '${land.size}m² - ${land.area}',
+                price: '${land.price.toStringAsFixed(0)} FCFA',
+                type: land.typeOfContract == 'sale' ? 'Vente' : 'Location',
+                icon: Icons.landscape,
+              ),
+            ),
           ],
         );
       },
@@ -359,11 +369,7 @@ class DashboardHomeTab extends StatelessWidget {
               color: AppColors.primary.withOpacity(0.1),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(
-              icon,
-              color: AppColors.primary,
-              size: 20,
-            ),
+            child: Icon(icon, color: AppColors.primary, size: 20),
           ),
           const SizedBox(width: 12),
           Expanded(
